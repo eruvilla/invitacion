@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botón Escurridizo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('https://assets.biggerpicture.ai/assets/HO-1600/eventmaster/1103_4.png') no-repeat center center fixed;
+            background-size: cover;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            position: relative;
+            height: 200px;
+        }
+        .btn, .aceptar {
+            font-size: 16px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn {
+            background-color: #e74c3c;
+            color: white;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .aceptar {
+            background-color: #2ecc71;
+            color: white;
+            position: absolute;
+            left: 50%;
+            top: 20%;
+            transform: translate(-50%, -50%);
+        }
+        #mensaje {
+            margin-top: 20px;
+            font-size: 35px;
+            color: black;
+            font-weight: bold;
+        }
+        .animation {
+            position: absolute;
+            bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: yellow;
+            animation: bounce 1.5s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        @media (max-width: 600px) {
+            .btn, .aceptar {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+            .container {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2 id="titulo">¿Aceptar ir a ver "Kenia OS: La og" conmigo?</h2>
+    <div class="container" id="contenedor">
+        <button class="aceptar" id="acceptBtn">Aceptar🧡</button>
+        <button class="btn" id="movableBtn" onmouseover="moverBoton()">Rechazar☹</button>
+    </div>
+    <p id="mensaje"></p>
+    <p class="animation">🎉 ¡Feliz Cumpleaños bebe! 🎂</p>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("acceptBtn").addEventListener("click", function() {
+                document.getElementById("mensaje").textContent = "🧡¡Gracias por aceptar, Te amo!🧡";
+                document.getElementById("titulo").style.display = "none";
+                document.getElementById("contenedor").style.display = "none";
+            });
+        });
+
+        function moverBoton() {
+            const btn = document.getElementById("movableBtn");
+            const container = document.querySelector(".container");
+            const maxX = container.clientWidth - btn.clientWidth;
+            const maxY = container.clientHeight - btn.clientHeight;
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+            btn.style.left = randomX + "px";
+            btn.style.top = randomY + "px";
+        }
+    </script>
+</body>
+</html>
